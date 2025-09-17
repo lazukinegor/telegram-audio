@@ -32,3 +32,10 @@ pip install -r requirements.txt
 Выставите свои данные в .env.example и переменуйте его в .env.
 Получить токены API_ID, API_HASH https://my.telegram.org/apps.
 Получить YA_TOKEN https://github.com/MarshalX/yandex-music-api/discussions/513.
+
+**Дорожная карта**
+- Добавить новые API
+- Исключить видео из поиска
+- Ускорить скрипт
+- Добавить лог в кеш
+- UI

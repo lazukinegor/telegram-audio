@@ -24,8 +24,7 @@
 git clone https://github.com/lazukinegor/telegram-audio.git
 cd telegram-audio
 python -m venv .venv
-source .venv/bin/activate   # Linux/Mac
-.venv\Scripts\activate      # Windows
+source .venv\Scripts\activate      # Windows
 pip install -r requirements.txt
 
 ```

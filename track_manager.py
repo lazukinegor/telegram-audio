@@ -1,11 +1,12 @@
 import os
-from winsdk.windows.media.control import GlobalSystemMediaTransportControlsSessionManager as MediaManager
+from winrt.windows.media.control import GlobalSystemMediaTransportControlsSessionManager as MediaManager
 from mutagen.mp3 import MP3
 from mutagen.id3 import ID3, TIT2, TPE1
 from telethon import types, functions
-
 from yandex_client import ya_client
 from utils import log
+
+last_track = None
 
 os.makedirs("music", exist_ok=True)
 
@@ -61,11 +62,11 @@ async def handle_current_track():
         best_match.download(file_path, codec="mp3")
     else:
         log("✅ Уже в кэше")
-        return
-
+    
     await send_to_saved(file_path, title, artist)
 
 async def send_to_saved(file_path, title, artist):
+    global last_track
     from telegram_client import clientTelegram
     audio = MP3(file_path, ID3=ID3)
     if not audio.tags:
@@ -74,6 +75,10 @@ async def send_to_saved(file_path, title, artist):
     audio.tags.add(TPE1(encoding=3, text=artist))
     audio.save()
 
+    if last_track == file_path:
+        log("ℹ️ Этот трек уже в аудиостатусе")
+        return
+    last_track = file_path
     duration = int(audio.info.length)
     uploaded_file = await clientTelegram.upload_file(file_path)
 

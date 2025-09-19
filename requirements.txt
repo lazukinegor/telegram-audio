@@ -2,5 +2,5 @@ python-dotenv
 yandex-music
 telethon
 mutagen
-wheel
-winsdk
+winrt-Windows.Media.Control
+winrt.windows.foundation

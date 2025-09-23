@@ -42,7 +42,7 @@ async def handle_current_track():
     log(f"▶️ Сейчас играет: {title} — {artist}")
 
     query = f"{title} {artist}"
-    search_result = ya_client.search(query)
+    search_result = ya_client.search(query, type_="track")
     if not search_result.tracks or not search_result.tracks.results:
         return
 
